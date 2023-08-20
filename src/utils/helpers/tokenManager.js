@@ -17,7 +17,7 @@ const generateToken = (user, secret, duration) => {
 const verifyToken = (token, secret) => {
   try {
     const decodedToken = jwt.verify(token, secret);
-    console.log(decodedToken)
+    //console.log(decodedToken)
     return decodedToken;
   } catch (error) {
     return null;

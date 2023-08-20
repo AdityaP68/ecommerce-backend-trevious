@@ -4,8 +4,9 @@ const bodyParser = require("body-parser"); // Middleware for parsing request bod
 const createError = require("http-errors"); // Utility for creating HTTP error instances
 const morgan = require("morgan"); // HTTP request logger middleware
 const authRoutes = require("./routes/auth.routes"); // Import authentication routes
+const categoryRoutes = require("./routes/category.routes");
 require("dotenv").config(); // Load environment variables from .env file
-require("./db/db")
+require("./db/db");
 
 /**
  * NOT implementing protected error messages
@@ -26,6 +27,7 @@ app.use(morgan("dev")); // Use morgan for logging HTTP requests in "dev" format
 
 // Mount authentication routes under the "/api/auth" path
 app.use("/api/auth", authRoutes);
+app.use("/api/category", categoryRoutes);
 
 // Default route handling
 app.get("/", async (req, res, next) => {
@@ -47,7 +49,6 @@ app.use((err, req, res, next) => {
     },
   });
 });
-
 
 // Start the Express server on the specified port
 app.listen(PORT, () => {
