@@ -1,5 +1,5 @@
-#caching 
-#rate limiting 
+- [] caching 
+- [] rate limiting 
 #redis lookup table for token blacklisting
 #typescript refactor (composition pattern ??)
 #using prisma (also checkout the prisma bottleneck conditions)
