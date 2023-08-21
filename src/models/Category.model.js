@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// -----> need to add creator reference for role based access 
 const categorySchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   description: { type: String },
