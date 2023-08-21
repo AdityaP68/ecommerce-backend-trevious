@@ -9,6 +9,9 @@ router.use(authenticateAccessToken);
 // GET /categories - Get a list of all categories
 router.get("/", categoryController.getCategories);
 
+// GET /category/:id - Get a category by its name/id
+router.get('/:identifier', categoryController.getCategoryById);
+
 // POST /categories - Create a new category
 router.post("/", categoryController.createCategory);
 

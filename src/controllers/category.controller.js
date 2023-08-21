@@ -15,6 +15,26 @@ const getCategories = async (req, res, next) => {
   }
 };
 
+const getCategoryById = async (req, res, next) => {
+  try {
+    const identifier = req.params.identifier;
+    if (!identifier) {
+      res.status(300).redirect("/");
+    }
+    // Check if the identifier matches a valid MongoDB ObjectId
+    const isObjectId = mongoose.isValidObjectId(identifier);
+    // Find the category either by ID or name
+    const filter = isObjectId ? { _id: identifier } : { name: identifier };
+    const existingCategory = await Category.findOne(filter);
+    if (!existingCategory) {
+      return next(createError(404, "Category not found"));
+    }
+
+    res.status(200).send({ queryId: identifier, existingCategory });
+  } catch (e) {
+    next(createError(500, "Internal Server Error"));
+  }
+};
 // Create a new category
 const createCategory = async (req, res, next) => {
   try {
@@ -103,12 +123,10 @@ const deleteCategory = async (req, res, next) => {
     // Delete the category
     await Category.deleteOne(filter);
 
-    res
-      .status(200)
-      .json({
-        message: "Category deleted successfully",
-        category: existingCategory,
-      });
+    res.status(200).json({
+      message: "Category deleted successfully",
+      category: existingCategory,
+    });
   } catch (error) {
     next(createError(500, "Internal server error"));
   }
@@ -116,6 +134,7 @@ const deleteCategory = async (req, res, next) => {
 
 module.exports = {
   getCategories,
+  getCategoryById,
   createCategory,
   editCategory,
   deleteCategory,
