@@ -1,8 +1,30 @@
-#caching 
-#rate limiting 
-#redis lookup table for token blacklisting
-#typescript refactor (composition pattern ??)
-#using prisma (also checkout the prisma bottleneck conditions)
-#adding streams for product intro
-#containerization + CI/CD (github actions) setup
-
+[
+  {
+    "task": "caching",
+    "completed": false
+  },
+  {
+    "task": "rate limiting",
+    "completed": false
+  },
+  {
+    "task": "redis lookup table for token blacklisting",
+    "completed": false
+  },
+  {
+    "task": "typescript refactor (composition pattern ??)",
+    "completed": false
+  },
+  {
+    "task": "using prisma (also checkout the prisma bottleneck conditions)",
+    "completed": false
+  },
+  {
+    "task": "adding streams for product intro",
+    "completed": false
+  },
+  {
+    "task": "containerization + CI/CD (github actions) setup",
+    "completed": false
+  }
+]
